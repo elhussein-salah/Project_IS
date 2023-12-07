@@ -170,6 +170,7 @@ public class SplashScreen extends  javax.swing.JFrame {
             }
 
         }
+        
         sp.dispose();
         new Login().setVisible(true);
     }
