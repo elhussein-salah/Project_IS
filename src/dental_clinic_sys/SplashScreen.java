@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author Administrator
  */
-public class SplashScreen extends javax.swing.JFrame {
+public class SplashScreen extends  javax.swing.JFrame {
 
     /**
      * Creates new form SplashScreen
@@ -167,12 +167,11 @@ public class SplashScreen extends javax.swing.JFrame {
             }
         if(i ==100){
 
-            sp.dispose();
-         new login().
-         //   loginPage.show();
             }
 
         }
+        sp.dispose();
+        new Login().setVisible(true);
     }
     catch(Exception e){
         JOptionPane.showMessageDialog(null, e);
