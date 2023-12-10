@@ -51,8 +51,6 @@ public class SplashScreen extends  javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 250));
         jPanel1.setRequestFocusEnabled(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("G:\\project\\imgs\\54.png")); // NOI18N
-
         loadingValue.setText("0%");
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -87,9 +85,9 @@ public class SplashScreen extends  javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loadingValue)
-                    .addComponent(loadingLabel))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loadingLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(loadingValue))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bar, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
