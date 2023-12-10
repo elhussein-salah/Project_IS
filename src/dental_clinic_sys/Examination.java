@@ -217,7 +217,7 @@ public class Examination extends javax.swing.JFrame {
                 }
                 
                 //JOptionPane.showMessageDialog(this, first +fir " " + last + " " + history + " " + statue );
-                 String sql = "select * from customers where First_name='" + first +"' AND Last_name='" + last +"'AND phone="' ";
+                 //String sql = "select * from customers where First_name='" + first +"' AND Last_name='" + last +"'AND phone="' ";
                 PreparedStatement stmt = con.prepareStatement("insert into records(First_name,last_name,phone,age,gender,address ,date, statue , cost ) values(?,?,?,?,? ,?,?,?,?)");
                    stmt.setString(1, first); 
                    stmt.setString(2, last); 
