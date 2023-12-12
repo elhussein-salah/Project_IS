@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,11 +22,24 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Examination extends javax.swing.JFrame {
-    String first  , last , phonenum , history  , statue  ;
+    String first  , last , phonenum , history  , status,phone  ;
     double price ; 
     
-    
- //DefaultTableModel dtm ; 
+    static HashMap<String,Integer>  material = new HashMap<String,Integer>();
+    public void getMatrial(HashMap<String,Integer>  m){
+        try {
+            String sql = "select NameResource and NumberResource from resources";
+            
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                m.put(rs.getString("NameResource"),rs.getInt("NameResource") );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Examination.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //DefaultTableModel dtm ; 
     
     
     
@@ -38,7 +52,7 @@ public class Examination extends javax.swing.JFrame {
     public Examination() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        getMatrial(material);
       
         try {
              con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "root");
@@ -66,12 +80,13 @@ public class Examination extends javax.swing.JFrame {
         statuecombobox = new javax.swing.JComboBox<>();
         date = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        edt_phone = new javax.swing.JTextField();
         Labelcost = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 255));
@@ -94,8 +109,13 @@ public class Examination extends javax.swing.JFrame {
         jPanel2.add(laname, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 210, 30));
 
         statuecombobox.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        statuecombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cavities", "Gingivitis/Periodontitis", "Tooth Sensitivity", "Tooth Abscess", "Bad Breath", "Malocclusion", " " }));
-        jPanel2.add(statuecombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 170, -1));
+        statuecombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cavities", "Gingivitis/Periodontitis", "Tooth Sensitivity", "Tooth Abscess", "Bad Breath", "Malocclusion" }));
+        statuecombobox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                statuecomboboxItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(statuecombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 170, -1));
 
         date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         date.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +123,7 @@ public class Examination extends javax.swing.JFrame {
                 dateActionPerformed(evt);
             }
         });
-        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 290, 30));
+        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 290, 30));
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAdd.setText("Add");
@@ -112,32 +132,32 @@ public class Examination extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 139, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Public\\Pictures\\R.png")); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 280, 100, 100));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Public\\Pictures\\25845a2b3ec629b43eef4ed89c8a.jpg")); // NOI18N
-        jLabel2.setText("jLabel2");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 290, 210));
+        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 139, -1));
+        jPanel2.add(edt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 210, 40));
 
         Labelcost.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Labelcost.setText("Cost:");
         Labelcost.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel2.add(Labelcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 60, 110, 30));
+        jPanel2.add(Labelcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 110, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("FirstName:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("SecondName:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, 20));
+        jLabel4.setText("Phone:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 120, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Date:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, 80, 30));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 80, 30));
+
+        jLabel1.setText("jLabel1");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 960, 340));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("SecondName:");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, 20));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,14 +186,117 @@ public class Examination extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if (!finame.getText().isEmpty() &&  ! laname.getText().isEmpty() &&  ! date.getText().isEmpty() ){
-            
+        if (!finame.getText().isEmpty() &&  ! laname.getText().isEmpty() &&  ! date.getText().isEmpty() && ! edt_phone.getText().isEmpty()){
+           
             try {
                 first = finame.getText();
                 last = laname.getText() ;
                 history = date.getText();
-                statue = statuecombobox.getSelectedItem().toString() ;
-                switch (statue){
+                phone = edt_phone.getText();
+                
+                status = statuecombobox.getSelectedItem().toString();
+                String sql = "select * from customers where first_name="+"'"+first+"'"+" and last_name="+"'"+last+"'"+" and phone="+"'"+phone+"'";
+                PreparedStatement stmt1 = con.prepareStatement(sql);
+                ResultSet rs = stmt1.executeQuery(sql);
+                switch (status){
+                    case "Cavities":
+                        Labelcost.setText("700");
+                        price = 700 ;
+                        break;
+                        
+                    case "Gingivitis/Periodontitis":
+                        Labelcost.setText("800");
+                        price = 800 ; 
+                        break;
+                        
+                        
+                    case "Tooth Sensitivity":
+                        Labelcost.setText("500");
+                        price = 500 ; 
+                        break;
+                        
+                        
+                    case "Tooth Abscess":
+                        Labelcost.setText("900");
+                        price = 900 ; 
+                        break;
+                        
+                        
+                    case "Bad Breath":
+                        Labelcost.setText("400");
+                        price = 400 ;
+                        break;
+                        
+                        
+                    case "Malocclusion":
+                        Labelcost.setText("1500");
+                        price = 1900 ; 
+                        
+                        break;
+                        
+                        
+                    default:
+                        Labelcost.setText("");
+                        break;
+                        
+                }
+                
+                if(rs.next()){
+                //JOptionPane.showMessageDialog(this, first +fir " " + last + " " + history + " " + statue );
+                 //String sql = "select * from customers where First_name='" + first +"' AND Last_name='" + last +"'AND phone="' ";
+                PreparedStatement stmt = con.prepareStatement("insert into records(first_name,last_name,phone,age,gender,address ,date, status , cost ) values(?,?,?,?,? ,?,?,?,?)");
+                   stmt.setString(1, first); 
+                   stmt.setString(2, last); 
+                   stmt.setString(3, phone); 
+                   stmt.setInt(4, rs.getInt("age")); 
+                   stmt.setString(5, rs.getString("gander"));
+                   stmt.setString(6, rs.getString("address"));
+                   stmt.setString(7, history);
+                   stmt.setString(8,status); 
+                   stmt.setDouble(9, price); 
+                   
+                    
+                stmt.executeUpdate();
+                
+                JOptionPane.showMessageDialog(this, "Booking Successfully");
+                                
+                }
+                else{
+                        JOptionPane.showMessageDialog(this, "must add the client first!");
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Examination.class.getName()).log(Level.SEVERE, null, ex);
+            }
+  
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "please fill data first!");
+
+        }
+        
+        
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    
+    
+    
+    
+    
+    
+    
+    private void lanameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lanameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lanameActionPerformed
+
+    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateActionPerformed
+
+    private void statuecomboboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_statuecomboboxItemStateChanged
+        // TODO add your handling code here:
+        status = statuecombobox.getSelectedItem().toString() ;
+                switch (status){
                     case "Cavities":
                         Labelcost.setText("700");
                         price = 700 ; 
@@ -215,50 +338,8 @@ public class Examination extends javax.swing.JFrame {
                         break;
                         
                 }
-                
-                //JOptionPane.showMessageDialog(this, first +fir " " + last + " " + history + " " + statue );
-                 //String sql = "select * from customers where First_name='" + first +"' AND Last_name='" + last +"'AND phone="' ";
-                PreparedStatement stmt = con.prepareStatement("insert into records(First_name,last_name,phone,age,gender,address ,date, statue , cost ) values(?,?,?,?,? ,?,?,?,?)");
-                   stmt.setString(1, first); 
-                   stmt.setString(2, last); 
-                   stmt.setString(3, " "); 
-                   stmt.setDouble(4, 18 ); 
-                   stmt.setString(5, " ");
-                   stmt.setString(6, " ");
-                   stmt.setString(7, " ");
-                   stmt.setString(8,statue); 
-                   stmt.setDouble(9, price); 
-                   
-                    
-                stmt.executeUpdate();
-                
-                JOptionPane.showMessageDialog(this, "Added Succsesfully");
-                
-                
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(Examination.class.getName()).log(Level.SEVERE, null, ex);
-            }
-  
-        }
         
-        
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    
-    
-    
-    
-    
-    
-    
-    private void lanameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lanameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lanameActionPerformed
-
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
+    }//GEN-LAST:event_statuecomboboxItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -309,12 +390,13 @@ public class Examination extends javax.swing.JFrame {
     private javax.swing.JLabel Labelcost;
     private javax.swing.JButton btnAdd;
     private javax.swing.JTextField date;
+    private javax.swing.JTextField edt_phone;
     private javax.swing.JTextField finame;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField laname;
