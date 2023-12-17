@@ -42,7 +42,6 @@ public class HomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
         btnRes = new javax.swing.JButton();
         btnFinances = new javax.swing.JButton();
@@ -59,10 +58,15 @@ public class HomePage extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 90, 80));
-
         btnExit.setText("Exit");
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitMouseExited(evt);
+            }
+        });
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -72,10 +76,31 @@ public class HomePage extends javax.swing.JFrame {
 
         btnRes.setBackground(new java.awt.Color(255, 255, 255));
         btnRes.setText("Resources");
+        btnRes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnResMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnResMouseExited(evt);
+            }
+        });
+        btnRes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 180, 30));
 
         btnFinances.setBackground(new java.awt.Color(255, 255, 255));
         btnFinances.setText("Finances");
+        btnFinances.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnFinancesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnFinancesMouseExited(evt);
+            }
+        });
         btnFinances.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFinancesActionPerformed(evt);
@@ -96,7 +121,15 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 200, 180, 30));
 
         btnView.setBackground(new java.awt.Color(255, 255, 255));
-        btnView.setText("View Archives");
+        btnView.setText("View appointments");
+        btnView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnViewMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnViewMouseExited(evt);
+            }
+        });
         jPanel1.add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 180, 30));
 
         btnSettings.setText("Settings");
@@ -109,6 +142,14 @@ public class HomePage extends javax.swing.JFrame {
 
         btnBooking.setBackground(new java.awt.Color(255, 255, 255));
         btnBooking.setText("Booking");
+        btnBooking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBookingMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBookingMouseExited(evt);
+            }
+        });
         btnBooking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBookingActionPerformed(evt);
@@ -167,6 +208,72 @@ public class HomePage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mouseExited
 
+    private void btnResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResActionPerformed
+        // TODO add your handling code here:
+        Resources res = new Resources();
+        res.show();
+    }//GEN-LAST:event_btnResActionPerformed
+
+    private void btnBookingMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBookingMouseEntered
+        // TODO add your handling code here:
+        btnBooking.setBackground(new Color(57, 71, 147));
+
+    }//GEN-LAST:event_btnBookingMouseEntered
+
+    private void btnBookingMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBookingMouseExited
+        // TODO add your handling code here:
+        btnBooking.setBackground(new Color(255, 255, 255));
+
+    }//GEN-LAST:event_btnBookingMouseExited
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        // TODO add your handling code here:
+        btnExit.setBackground(new Color(255, 0, 0));
+
+    }//GEN-LAST:event_btnExitMouseEntered
+
+    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
+        // TODO add your handling code here:
+        btnExit.setBackground(new Color(255, 255, 255));
+
+    }//GEN-LAST:event_btnExitMouseExited
+
+    private void btnResMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResMouseEntered
+        // TODO add your handling code here:
+        btnRes.setBackground(new Color(57, 71, 147));
+
+    }//GEN-LAST:event_btnResMouseEntered
+
+    private void btnResMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResMouseExited
+        // TODO add your handling code here:
+        btnRes.setBackground(new Color(255, 255, 255));
+
+    }//GEN-LAST:event_btnResMouseExited
+
+    private void btnViewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMouseEntered
+        // TODO add your handling code here:
+        btnView.setBackground(new Color(57, 71, 147));
+
+    }//GEN-LAST:event_btnViewMouseEntered
+
+    private void btnViewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMouseExited
+        // TODO add your handling code here:
+        btnView.setBackground(new Color(255, 255, 255));
+
+    }//GEN-LAST:event_btnViewMouseExited
+
+    private void btnFinancesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinancesMouseEntered
+        // TODO add your handling code here:
+        btnFinances.setBackground(new Color(57, 71, 147));
+
+    }//GEN-LAST:event_btnFinancesMouseEntered
+
+    private void btnFinancesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFinancesMouseExited
+        // TODO add your handling code here:
+        btnFinances.setBackground(new Color(255, 255, 255));
+
+    }//GEN-LAST:event_btnFinancesMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -211,7 +318,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnSettings;
     private javax.swing.JButton btnView;
     private javax.swing.JLabel img;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
