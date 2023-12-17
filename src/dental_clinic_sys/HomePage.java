@@ -195,6 +195,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingActionPerformed
         // TODO add your handling code here:
+        Examination exa = new Examination();
+        exa.show();
     }//GEN-LAST:event_btnBookingActionPerformed
 
     private void mouseentered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mouseentered

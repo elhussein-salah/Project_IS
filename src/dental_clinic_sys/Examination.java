@@ -15,21 +15,18 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author asmaa
- */
+
 
 
 public class Examination extends javax.swing.JFrame {
     String first  , last , phonenum , history  , status,phone  ;
     double price ; 
-    
+    Connection con;
     static HashMap<String,Integer>  material = new HashMap<String,Integer>();
     public void getMatrial(HashMap<String,Integer>  m){
         try {
-            String sql = "select NameResource and NumberResource from resources";
-            
+            String sql = "select NameResource , NumberResource from resources";
+            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/project","root","root");
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
@@ -43,7 +40,7 @@ public class Examination extends javax.swing.JFrame {
     
     
     
-    Connection con;
+
     //ArrayList<Integer> deptsIds = new ArrayList<>();
     
     /**
@@ -82,11 +79,11 @@ public class Examination extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         edt_phone = new javax.swing.JTextField();
         Labelcost = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblfName = new javax.swing.JLabel();
+        lblPhone = new javax.swing.JLabel();
+        lbldate = new javax.swing.JLabel();
+        lblsName = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 255));
@@ -98,7 +95,7 @@ public class Examination extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         finame.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jPanel2.add(finame, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 218, 30));
+        jPanel2.add(finame, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 210, 30));
 
         laname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         laname.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +112,7 @@ public class Examination extends javax.swing.JFrame {
                 statuecomboboxItemStateChanged(evt);
             }
         });
-        jPanel2.add(statuecombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 170, -1));
+        jPanel2.add(statuecombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 180, 170, -1));
 
         date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         date.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +120,7 @@ public class Examination extends javax.swing.JFrame {
                 dateActionPerformed(evt);
             }
         });
-        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 230, 30));
+        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 230, 30));
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAdd.setText("Add");
@@ -132,32 +129,34 @@ public class Examination extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 139, -1));
-        jPanel2.add(edt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 210, 40));
+        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 139, -1));
+        jPanel2.add(edt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 210, 30));
 
+        Labelcost.setBackground(new java.awt.Color(153, 0, 153));
         Labelcost.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Labelcost.setForeground(new java.awt.Color(0, 0, 0));
         Labelcost.setText("Cost:");
         Labelcost.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel2.add(Labelcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 110, 30));
+        jPanel2.add(Labelcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 180, 110, 30));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setText("FirstName:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        lblfName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblfName.setText("FirstName:");
+        jPanel2.add(lblfName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setText("Phone:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 120, 20));
+        lblPhone.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPhone.setText("Phone:");
+        jPanel2.add(lblPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 120, 20));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Date:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 80, 30));
+        lbldate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbldate.setText("Date:");
+        jPanel2.add(lbldate, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 90, 80, 30));
 
-        jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 80, 960, 340));
+        lblsName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblsName.setText("SecondName:");
+        jPanel2.add(lblsName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, 20));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setText("SecondName:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, 20));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/Examination.png"))); // NOI18N
+        jPanel2.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1125, 450));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,7 +166,9 @@ public class Examination extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -521,18 +522,18 @@ public class Examination extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Labelcost;
+    private javax.swing.JLabel bg;
     private javax.swing.JButton btnAdd;
     private javax.swing.JTextField date;
     private javax.swing.JTextField edt_phone;
     private javax.swing.JTextField finame;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField laname;
+    private javax.swing.JLabel lblPhone;
+    private javax.swing.JLabel lbldate;
+    private javax.swing.JLabel lblfName;
+    private javax.swing.JLabel lblsName;
     private javax.swing.JComboBox<String> statuecombobox;
     // End of variables declaration//GEN-END:variables
 }
