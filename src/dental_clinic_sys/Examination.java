@@ -33,7 +33,7 @@ public class Examination extends javax.swing.JFrame {
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
-                m.put(rs.getString("NameResource"),rs.getInt("NameResource") );
+                m.put(rs.getString("NameResource"),rs.getInt("NumberResource") );
             }
         } catch (SQLException ex) {
             Logger.getLogger(Examination.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,7 +98,7 @@ public class Examination extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         finame.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jPanel2.add(finame, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 218, 30));
+        jPanel2.add(finame, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 218, 30));
 
         laname.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         laname.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +106,7 @@ public class Examination extends javax.swing.JFrame {
                 lanameActionPerformed(evt);
             }
         });
-        jPanel2.add(laname, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 210, 30));
+        jPanel2.add(laname, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 210, 30));
 
         statuecombobox.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         statuecombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cavities", "Gingivitis/Periodontitis", "Tooth Sensitivity", "Tooth Abscess", "Bad Breath", "Malocclusion" }));
@@ -115,7 +115,7 @@ public class Examination extends javax.swing.JFrame {
                 statuecomboboxItemStateChanged(evt);
             }
         });
-        jPanel2.add(statuecombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 170, -1));
+        jPanel2.add(statuecombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 170, -1));
 
         date.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         date.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +123,7 @@ public class Examination extends javax.swing.JFrame {
                 dateActionPerformed(evt);
             }
         });
-        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 290, 30));
+        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 230, 30));
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAdd.setText("Add");
@@ -132,28 +132,28 @@ public class Examination extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 139, -1));
-        jPanel2.add(edt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 210, 40));
+        jPanel2.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 139, -1));
+        jPanel2.add(edt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 210, 40));
 
         Labelcost.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Labelcost.setText("Cost:");
         Labelcost.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel2.add(Labelcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 110, 30));
+        jPanel2.add(Labelcost, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 110, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("FirstName:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Phone:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 120, 20));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 120, 20));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Date:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, 80, 30));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 80, 30));
 
         jLabel1.setText("jLabel1");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 960, 340));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 80, 960, 340));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("SecondName:");
@@ -193,58 +193,17 @@ public class Examination extends javax.swing.JFrame {
                 last = laname.getText() ;
                 history = date.getText();
                 phone = edt_phone.getText();
-                
+                int counter;
                 status = statuecombobox.getSelectedItem().toString();
                 String sql = "select * from customers where first_name="+"'"+first+"'"+" and last_name="+"'"+last+"'"+" and phone="+"'"+phone+"'";
                 PreparedStatement stmt1 = con.prepareStatement(sql);
                 ResultSet rs = stmt1.executeQuery(sql);
-                switch (status){
-                    case "Cavities":
-                        Labelcost.setText("700");
-                        price = 700 ;
-                        break;
-                        
-                    case "Gingivitis/Periodontitis":
-                        Labelcost.setText("800");
-                        price = 800 ; 
-                        break;
-                        
-                        
-                    case "Tooth Sensitivity":
-                        Labelcost.setText("500");
-                        price = 500 ; 
-                        break;
-                        
-                        
-                    case "Tooth Abscess":
-                        Labelcost.setText("900");
-                        price = 900 ; 
-                        break;
-                        
-                        
-                    case "Bad Breath":
-                        Labelcost.setText("400");
-                        price = 400 ;
-                        break;
-                        
-                        
-                    case "Malocclusion":
-                        Labelcost.setText("1500");
-                        price = 1900 ; 
-                        
-                        break;
-                        
-                        
-                    default:
-                        Labelcost.setText("");
-                        break;
-                        
-                }
+                
                 
                 if(rs.next()){
                 //JOptionPane.showMessageDialog(this, first +fir " " + last + " " + history + " " + statue );
                  //String sql = "select * from customers where First_name='" + first +"' AND Last_name='" + last +"'AND phone="' ";
-                PreparedStatement stmt = con.prepareStatement("insert into records(first_name,last_name,phone,age,gender,address ,date, status , cost ) values(?,?,?,?,? ,?,?,?,?)");
+                PreparedStatement stmt = con.prepareStatement("insert into records(first_name,last_name,phone,age,gender,address ,date_, status_ , cost ) values(?,?,?,?,? ,?,?,?,?)");
                    stmt.setString(1, first); 
                    stmt.setString(2, last); 
                    stmt.setString(3, phone); 
@@ -254,7 +213,181 @@ public class Examination extends javax.swing.JFrame {
                    stmt.setString(7, history);
                    stmt.setString(8,status); 
                    stmt.setDouble(9, price); 
-                   
+                   switch (status){
+                    case "Cavities":
+                        Labelcost.setText("700");
+                        price = 700 ;
+                        
+                        counter = material.get("Dental drill");
+                        counter--;
+                        material.put("Dental drill", counter);
+                        
+                        counter = material.get("Dental bur");
+                        counter--;
+                        material.put(" Dental bur", counter);
+                        
+                        counter = material.get("Excavator");
+                        counter--;
+                        material.put(" Excavator", counter);
+                        {
+                        PreparedStatement stmtr1 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental drill") +" WHERE Id=11" );
+                        PreparedStatement stmtr2 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental bur") +" WHERE Id=8" );
+                        PreparedStatement stmtr3 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Excavator") +" WHERE Id=18" );
+              
+                        stmtr1.executeQuery();
+                        stmtr2.executeQuery();
+                        stmtr3.executeQuery();
+                        }
+                        break;
+                        
+                    case "Gingivitis/Periodontitis":
+                        Labelcost.setText("800");
+                        price = 800 ; 
+                        
+                        counter = material.get("Dental drill");
+                        counter--;
+                        material.put("Dental drill", counter);
+                        
+                        counter = material.get("Dental bur");
+                        counter--;
+                        material.put(" Dental bur", counter);
+                        
+                        counter = material.get("Excavator");
+                        counter--;
+                        material.put(" Excavator", counter);
+                        {
+                        PreparedStatement stmtr1 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental drill") +" WHERE Id=11" );
+                        PreparedStatement stmtr2 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental bur") +" WHERE Id=8" );
+                        PreparedStatement stmtr3 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Excavator") +" WHERE Id=18" );
+              
+                        stmtr1.executeQuery();
+                        stmtr2.executeQuery();
+                        stmtr3.executeQuery();
+                        }
+                        
+                        break;
+                        
+                        
+                    case "Tooth Sensitivity":
+                        Labelcost.setText("500");
+                        price = 500 ; 
+                        
+                        counter = material.get("Dental drill");
+                        counter--;
+                        material.put("Dental drill", counter);
+                        
+                        counter = material.get("Dental bur");
+                        counter--;
+                        material.put(" Dental bur", counter);
+                        
+                        counter = material.get("Excavator");
+                        counter--;
+                        material.put(" Excavator", counter);
+                        
+                        {
+                        PreparedStatement stmtr1 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental drill") +" WHERE Id=11" );
+                        PreparedStatement stmtr2 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental bur") +" WHERE Id=8" );
+                        PreparedStatement stmtr3 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Excavator") +" WHERE Id=18" );
+              
+                        stmtr1.executeQuery();
+                        stmtr2.executeQuery();
+                        stmtr3.executeQuery();
+                        }
+                        
+                        
+                        
+                        break;
+                        
+                        
+                    case "Tooth Abscess":
+                        Labelcost.setText("900");
+                        price = 900 ;
+                        
+                        counter = material.get("Dental drill");
+                        counter--;
+                        material.put("Dental drill", counter);
+                        
+                        counter = material.get("Dental bur");
+                        counter--;
+                        material.put(" Dental bur", counter);
+                        
+                        counter = material.get("Excavator");
+                        counter--;
+                        material.put(" Excavator", counter);
+                        {
+                        PreparedStatement stmtr1 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental drill") +" WHERE Id=11" );
+                        PreparedStatement stmtr2 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental bur") +" WHERE Id=8" );
+                        PreparedStatement stmtr3 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Excavator") +" WHERE Id=18" );
+              
+                        stmtr1.executeQuery();
+                        stmtr2.executeQuery();
+                        stmtr3.executeQuery();
+                        
+                        }                        
+                        break;
+                        
+                        
+                    case "Bad Breath":
+                        Labelcost.setText("400");
+                        price = 400 ;
+                        
+                        counter = material.get("Dental drill");
+                        counter--;
+                        material.put("Dental drill", counter);
+                        
+                        counter = material.get("Dental bur");
+                        counter--;
+                        material.put(" Dental bur", counter);
+                        
+                        counter = material.get("Excavator");
+                        counter--;
+                        material.put(" Excavator", counter);
+                        {
+                        PreparedStatement stmtr1 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental drill") +" WHERE Id=11" );
+                        PreparedStatement stmtr2 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental bur") +" WHERE Id=8" );
+                        PreparedStatement stmtr3 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Excavator") +" WHERE Id=18" );
+              
+                        stmtr1.executeQuery();
+                        stmtr2.executeQuery();
+                        stmtr3.executeQuery();
+                        
+                        } 
+                        break;
+                        
+                        
+                    case "Malocclusion":
+                        Labelcost.setText("1500");
+                        price = 1900 ; 
+                        
+                        counter = material.get("Dental drill");
+                        counter--;
+                        material.put("Dental drill", counter);
+                        
+                        counter = material.get("Dental bur");
+                        counter--;
+                        material.put(" Dental bur", counter);
+                        
+                        counter = material.get("Excavator");
+                        counter--;
+                        material.put(" Excavator", counter);
+                        {
+                        PreparedStatement stmtr1 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental drill") +" WHERE Id=11" );
+                        PreparedStatement stmtr2 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Dental bur") +" WHERE Id=8" );
+                        PreparedStatement stmtr3 = con.prepareStatement("UPDATE resources SET NumberResource="+material.get("Excavator") +" WHERE Id=18" );
+              
+                        stmtr1.executeQuery();
+                        stmtr2.executeQuery();
+                        stmtr3.executeQuery();
+                        
+                        } 
+                        break;
+                        
+                        
+                    default:
+                        Labelcost.setText("");
+                        break;
+                        
+                }
                     
                 stmt.executeUpdate();
                 

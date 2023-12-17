@@ -35,7 +35,7 @@ public class settings extends javax.swing.JFrame {
     }
     //Login login = new Login();
     
-    String password,username,confirmPassword;
+    
     
     DefaultTableModel dtm;
     Connection con;
@@ -66,12 +66,12 @@ public class settings extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        edtAddPass = new javax.swing.JPasswordField();
+        upnewpass = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        edtAddUser = new javax.swing.JTextField();
+        upUser = new javax.swing.JTextField();
         edtAddConPass = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -87,11 +87,13 @@ public class settings extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         edtAddPass1 = new javax.swing.JPasswordField();
         jLabel12 = new javax.swing.JLabel();
-        edtAddPass2 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        upoldpass = new javax.swing.JPasswordField();
+        btnUpdate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_show = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,15 +101,15 @@ public class settings extends javax.swing.JFrame {
 
         jLabel3.setText("old Password");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 296, 10));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 100, 10));
-        jPanel1.add(edtAddPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 140, -1));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 296, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 100, 10));
+        jPanel1.add(upnewpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 140, -1));
 
         jLabel2.setText("Username");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
 
         jLabel7.setText("Username");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         jButton2.setText("delete user");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -115,20 +117,20 @@ public class settings extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel6.setText("delete User");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
-        jPanel1.add(edtAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 140, -1));
-        jPanel1.add(edtAddConPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 140, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        jPanel1.add(upUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 140, -1));
+        jPanel1.add(edtAddConPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 140, -1));
 
         jLabel5.setText("Confirm");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel4.setText("update user");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
         btn_AddUser.setText("add user");
         btn_AddUser.addActionListener(new java.awt.event.ActionListener() {
@@ -136,17 +138,17 @@ public class settings extends javax.swing.JFrame {
                 btn_AddUserActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_AddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 83, 20));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 137, -1));
+        jPanel1.add(btn_AddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 83, 20));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 137, -1));
 
         lblError2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         lblError2.setForeground(new java.awt.Color(255, 0, 51));
         lblError2.setText("error");
-        jPanel1.add(lblError2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        jPanel1.add(lblError2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
 
         jLabel8.setText("Password");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel9.setText("Add User");
@@ -159,14 +161,19 @@ public class settings extends javax.swing.JFrame {
 
         jLabel11.setText("New Password");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
-        jPanel1.add(edtAddPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 140, -1));
+        jPanel1.add(edtAddPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 140, -1));
 
         jLabel12.setText("Password");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-        jPanel1.add(edtAddPass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 140, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jPanel1.add(upoldpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 140, -1));
 
-        jButton1.setText("update");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, -1));
+        btnUpdate.setText("update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
 
         tbl_show.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,6 +191,17 @@ public class settings extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("Users table");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
+
+        jCheckBox1.setText("show password");
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
+        jCheckBox2.setText("Show Password");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,8 +225,9 @@ public class settings extends javax.swing.JFrame {
 
     private void btn_AddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddUserActionPerformed
         // TODO add your handling code here:
-        username = edtAddUser.getText();
-        password = edtAddPass.getText();
+        String password,username,confirmPassword;
+        username = upUser.getText();
+        password = upnewpass.getText();
         confirmPassword = edtAddConPass.getText();
         if(!username.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty()){
             if(password.equals(confirmPassword)){
@@ -231,6 +250,20 @@ public class settings extends javax.swing.JFrame {
             }
     }   
     }//GEN-LAST:event_btn_AddUserActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        String username , oldPassword , newPassword;
+        username = upUser.getText();
+        oldPassword = upoldpass.getText();
+        newPassword = upnewpass.getText();
+        
+        if(!username.isEmpty() && !oldPassword.isEmpty() );
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,15 +301,14 @@ public class settings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btn_AddUser;
     private javax.swing.JPasswordField edtAddConPass;
-    private javax.swing.JPasswordField edtAddPass;
     private javax.swing.JPasswordField edtAddPass1;
-    private javax.swing.JPasswordField edtAddPass2;
-    private javax.swing.JTextField edtAddUser;
     private javax.swing.JTextField edtAddUser1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -298,5 +330,8 @@ public class settings extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblError2;
     private javax.swing.JTable tbl_show;
+    private javax.swing.JTextField upUser;
+    private javax.swing.JPasswordField upnewpass;
+    private javax.swing.JPasswordField upoldpass;
     // End of variables declaration//GEN-END:variables
 }
